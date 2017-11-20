@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--文字大小-->
+    <dimen name="base_text_size">26px</dimen>
+    <!--文字大小-->
+
+    <!--身份证读取-->
+    <dimen name="readid_item_text_size">26px</dimen>
+    <dimen name="readid_item_item_width">1010px</dimen>
+    <dimen name="readid_item_item_left_magin">450px</dimen>
+    <dimen name="readid_item_input_height">70px</dimen>
+    <dimen name="readid_item_input_width">885px</dimen>
+    <dimen name="readid_item_right_padding">20px</dimen>
+    <dimen name="readid_item_top_padding">42px</dimen>
+
+
+</resources>

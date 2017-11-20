@@ -1,0 +1,142 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+//读取配置文件
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId "com.zzg.baseandroid"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        flavorDimensions "versionCode"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    /**
+     * 签名设置
+     */
+    signingConfigs {
+        debug {
+            storeFile file('../sinocare-debug.jks')
+            storePassword "android"
+//            storePassword  System.console().readLine("\nKeystore password: ")
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file('../sinocare-release.jks')
+            keyAlias properties.getProperty('keyAlias')
+            keyPassword properties.getProperty('keyPassword')
+            storePassword properties.getProperty('storePassword')
+        }
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "HOST_DEBUG", "false" //接口环境
+            buildConfigField "boolean", "LOG_DEBUG", "false"  //日志开关
+            applicationIdSuffix ".release"
+            debuggable false  //是否支持调试
+            minifyEnabled true  //代码混淆
+            zipAlignEnabled true //代码压缩
+            shrinkResources true //去掉多余无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "HOST_DEBUG", "true"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            debuggable true  //是否支持调试
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    //so ，jni 路径配置
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']    //资源文件
+            jni.srcDirs 'src/main/jni'     //jni文件
+            jniLibs.srcDirs = ['libs']    //jni库
+        }
+    }
+
+    //编译java版本设置
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        //即使报错也不会停止打包
+        abortOnError false
+    }
+
+    //配置隧道
+    productFlavors {
+        flavor1 {
+            applicationId "com.zzg.baseandroid.flavor1"
+            manifestPlaceholders = [APP_NAME   : "android基础框架flavor1",
+                                    APP_CHANNEL: "flavor1"]
+        }
+        flavor2 {
+            applicationId "com.zzg.baseandroid.flavor2"
+            manifestPlaceholders = [APP_NAME   : "android基础框架flavor2",
+                                    APP_CHANNEL: "flavor2"]
+        }
+    }
+
+    //修改编译的apk名称
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def newApkName = applicationId + "-" + "-" + variant.versionName + "-${releaseTime()}.apk";
+            outputFileName = new File(newApkName);
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation rootProject.ext.androidDependencies["design"]
+    implementation rootProject.ext.androidDependencies["appcompat_v7"]
+    implementation rootProject.ext.androidDependencies["constraintLayout"]
+    implementation rootProject.ext.viewDependencies["multiStateView"]
+    implementation rootProject.ext.viewDependencies["materialdialogCore"]
+    implementation rootProject.ext.viewDependencies["materialdialogCommons"]
+    implementation rootProject.ext.viewDependencies["aVLoadingIndicatorView"]
+    implementation rootProject.ext.viewDependencies["butterknife"]
+    annotationProcessor  rootProject.ext.viewDependencies["butterknifeCompiler"]
+    implementation rootProject.ext.dataDependencies["retrofit"]
+    implementation rootProject.ext.dataDependencies["retrofitAdapter"]
+    implementation rootProject.ext.dataDependencies["retrofitConverter"]
+    implementation rootProject.ext.dataDependencies["logger"]
+    implementation rootProject.ext.dataDependencies["rxjava"]
+    implementation rootProject.ext.dataDependencies["rxandroid"]
+    implementation rootProject.ext.dataDependencies["rxBinding"]
+    implementation rootProject.ext.dataDependencies["rxBindingSupportV4"]
+    implementation rootProject.ext.dataDependencies["rxBindingAppcompatV7"]
+    implementation rootProject.ext.dataDependencies["rxBindingDesign"]
+    implementation rootProject.ext.dataDependencies["rxBindingRecyclerviewV7"]
+    implementation rootProject.ext.dataDependencies["rxlifecycle"]
+    implementation rootProject.ext.dataDependencies["rxlifecycleComponents"]
+    implementation rootProject.ext.dataDependencies["fastjson"]
+}
+
+// 获取当前系统时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}

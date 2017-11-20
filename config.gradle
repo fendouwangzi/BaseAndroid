@@ -1,0 +1,96 @@
+ext {
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            supportLibraryVersion :'27.0.0',
+            minSdkVersion    : 21,
+            targetSdkVersion : 26,
+            versionName : "1.0",
+            versionCode : 1
+    ]
+    constraintLayout = '1.0.2'
+
+    //ViewLibraries
+    materialdialog = '0.9.5.0'
+    baservadapter = '2.9.3'
+    multiStateView = '1.3.2'
+    aVLoadingIndicatorView = '2.1.3'
+    butterknife = '8.8.1'
+
+    //DataLibraries
+    logger2 = '2.1.1'
+    glide = '3.7.0'
+    gson = '2.8.2'
+    retrofit = '2.1.0'
+    rxjava = '1.3.0'
+    rxandroid = '1.2.1'
+    rxlifecycle = '0.5.0'
+    rxBinding = '1.0.1'
+    fastjson = '1.1.58.android'
+
+    androidDependencies = [
+            appcompat_v7    : "com.android.support:appcompat-v7:${android.supportLibraryVersion}",
+            support_v4      : "com.android.support:support-v4:${android.supportLibraryVersion}",
+            recyclerView    : "com.android.support:recyclerview-v7:${android.supportLibraryVersion}",
+            cardview_v7     : "com.android.support:cardview-v7:${android.supportLibraryVersion}",
+            design          : "com.android.support:design:${android.supportLibraryVersion}",
+            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayout}",
+    ]
+
+    viewDependencies = [
+            //Material Design  ----  A beautiful, fluid, and customizable dialogs API.
+            materialdialogCore   : "com.afollestad.material-dialogs:core:${materialdialog}",
+            materialdialogCommons   : "com.afollestad.material-dialogs:commons:${materialdialog}",
+
+            //RecyclerView 的强大的 BaseAdapter
+            baservadapter    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baservadapter}",
+
+            //MultiStateView  ----  Android View that displays different content based on its state
+            multiStateView    : "com.github.Kennyc1012:MultiStateView:${multiStateView}" ,
+
+            //aVLoadingIndicatorView  ----  Nice loading animations for Android
+            aVLoadingIndicatorView    : "com.wang.avi:library:${aVLoadingIndicatorView}",
+
+            //butterknife  ----  Bind Android views and callbacks to fields and methods.
+            butterknife    : "com.jakewharton:butterknife:${butterknife}",
+            butterknifeCompiler    : "com.jakewharton:butterknife-compiler:${butterknife}",
+            butterknifePlugin   : "com.jakewharton:butterknife-gradle-plugin:${butterknife}"
+    ]
+
+    dataDependencies = [
+            glide : "com.github.bumptech.glide:glide:${glide}",
+            gson  : "com.google.code.gson:gson:${gson}",
+
+            //retrofit
+            retrofit  : "com.squareup.retrofit2:retrofit:${retrofit}",
+            //配合rxjava使用
+            retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava:${retrofit}",
+            //转换器，请求结果转换成Model
+            retrofitConverter  : "com.squareup.retrofit2:converter-gson:${retrofit}",
+
+            //日志
+            logger  : "com.orhanobut:logger:${logger2}",
+
+            //rxjava
+            rxjava  : "io.reactivex:rxjava:${rxjava}",
+            rxandroid  : "io.reactivex:rxandroid:${rxandroid}",
+
+            //rxlifecycle  ---- Lifecycle handling APIs for Android apps using RxJava
+            rxlifecycle  : "com.trello:rxlifecycle:${rxlifecycle}",
+            rxlifecycleComponents  : "com.trello:rxlifecycle-components:${rxlifecycle}",
+
+            //fastjson
+            fastjson  : "com.alibaba:fastjson:${fastjson}",
+
+            //rxBinding  ---- RxJava binding APIs for Android's UI widgets.
+            rxBinding  : "com.jakewharton.rxbinding:rxbinding:${rxBinding}",
+            rxBindingSupportV4: "com.jakewharton.rxbinding:rxbinding-support-v4:${rxBinding}",
+            rxBindingAppcompatV7  : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxBinding}",
+            rxBindingDesign  : "com.jakewharton.rxbinding:rxbinding-design:${rxBinding}",
+            rxBindingRecyclerviewV7  : "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:${rxBinding}",
+
+
+
+    ]
+
+}

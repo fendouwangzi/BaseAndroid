@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BaseAndroid</string>
+    <!--公共部分-->
+    <string name="pb_un_able_network">当前网络不可用</string>
+    <!--公共部分-->
+
+    <!-- 登录 -->
+    <string name="activity_login_please_input_phone">请输入手机号码</string>
+    <string name="activity_login_phone_not_right">请输入正确的手机号码</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="activity_test_name">test</string>
+</resources>

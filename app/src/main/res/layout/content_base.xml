@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.zzg.baseandroid.ui.base.BaseActivity">
+
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/detail_multistate_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_325692"
+        app:msv_emptyView="@layout/multi_state_empty_view"
+        app:msv_errorView="@layout/multi_state_error_view"
+        app:msv_loadingView="@layout/multi_state_loading_view"
+        app:msv_viewState="loading">
+
+    </com.kennyc.view.MultiStateView>
+
+</android.support.constraint.ConstraintLayout>
